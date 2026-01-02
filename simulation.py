@@ -4,13 +4,12 @@ import time
 
 
 class Simulation:
-    population = {}
-    population_over_time = []
-
     def __init__(self, animals):
         self.animals = animals
         self.day = 0
         self.visitor = Visitor()
+        self.population = {}
+        self.population_over_time = []
 
     def report(self):
         """
@@ -34,7 +33,7 @@ Total population: {len(self.animals)}''')
         count = 0
         for item in self.population_over_time:
             print(f'\nDay {count}')
-            print(f'Total population: {len(self.population)}')
+            print(f'Total population: {len(self.animals)}')
             for animal, number in item.items():
                 print(f'{animal.capitalize()}: {number}', end=', ')
             print('')
@@ -51,11 +50,14 @@ Total population: {len(self.animals)}''')
             else:
                 self.population[animal.name] = 1
 
-    def choose_random_animal(self):
+    def choose_random_animal(self, animal=None):
         """
         Returns a randomly chosen animal from the animal list
         """
-        return choice(self.animals)
+        new_animal = choice(self.animals)
+        while new_animal == animal:
+            new_animal = choice(self.animals)
+        return new_animal
 
     def choose_action(self, animal):
         """
@@ -73,7 +75,7 @@ Total population: {len(self.animals)}''')
 
         Adjusts the animal list, as well as the population dict if needed
         """
-        animal2 = self.choose_random_animal()
+        animal2 = self.choose_random_animal(animal1)
         interaction = animal1.interact(animal2)
         if interaction == 'hunt':
             if animal1.hunt(animal2):

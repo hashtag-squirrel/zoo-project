@@ -9,7 +9,6 @@ class Animal(ABC):
     Abstract methods: interact(), speak()
     Concrete methods: eat(), sleep(), procreate()
     """
-    _energy_level = 10
 
     def __init__(self):
         self._age = 0
@@ -17,6 +16,7 @@ class Animal(ABC):
             self._sex = 'female'
         else:
             self._sex = 'male'
+        self._energy_level
 
     @property
     def name(self):
