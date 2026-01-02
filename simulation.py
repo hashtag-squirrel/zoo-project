@@ -34,11 +34,12 @@ Total population: {len(self.animals)}''')
         for item in self.population_over_time:
             print(f'\nDay {count}')
             total = 0
+            animals = ''
             for animal, number in item.items():
                 total += number
+                animals += f'{animal.capitalize()}: {number}, '
             print(f'Total population: {total}')
-            for animal, number in item.items():
-                print(f'{animal.capitalize()}: {number}', end=', ')
+            print(animals)
             print('')
             count += 1
 
