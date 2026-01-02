@@ -16,7 +16,7 @@ class Animal(ABC):
             self._sex = 'female'
         else:
             self._sex = 'male'
-        self._energy_level
+        self._energy_level = 10
 
     @property
     def name(self):
